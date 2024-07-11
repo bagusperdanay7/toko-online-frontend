@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
+/* .btn {
   @apply bg-coffee-800 py-4 px-7 rounded-xl hover:bg-coffee-800;
-}
+} */

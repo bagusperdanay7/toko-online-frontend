@@ -1,45 +1,54 @@
-import Image from "next/image";
+"use client";
 import Sidebar from "./components/sidebar";
-import Search from "./components/search";
-import { IoFastFoodOutline } from "react-icons/io5";
+import InputSearch from "./components/inputSearch";
+import CategoryCard from "./components/categoryCard";
+import Card from "./components/card";
+import { useState } from "react";
 
 export default function Home() {
+  const categories = [
+    { id: 1, name: "All" },
+    { id: 2, name: "Coffee" },
+    { id: 3, name: "Juice" },
+    { id: 4, name: "Milk" },
+    { id: 5, name: "Snack" },
+    { id: 6, name: "Rice" },
+    { id: 7, name: "Dessert" },
+  ];
+
+  const [active, setActive] = useState("");
+
   return (
     <main className="bg-primary-light-bg min-h-screen px-4">
       <Sidebar />
-      <h1 className="font-semibold text-3xl text-black mb-3">
-        Choose Category
-      </h1>
-      <Search />
-      <div className="flex justify-between mt-6 flex-wrap">
-        <div className="bg-secondary-light-bg p-4 border rounded-lg hover:ring-2 hover:ring-coffee-500">
-          <IoFastFoodOutline className="text-2xl mb-2" />
-          <span className="font-medium">All</span>
-        </div>
-        <div className="bg-secondary-light-bg p-4 border rounded-lg">
-          <IoFastFoodOutline className="text-2xl" />
-          Coffee
-        </div>
-        <div className="bg-secondary-light-bg p-4 border rounded-lg">
-          <IoFastFoodOutline className="text-2xl" />
-          Juice
-        </div>
-        <div className="bg-secondary-light-bg p-4 border rounded-lg">
-          <IoFastFoodOutline className="text-2xl" />
-          Milk Based
-        </div>
-        <div className="bg-secondary-light-bg p-4 border rounded-lg">
-          <IoFastFoodOutline className="text-2xl" />
-          Snack
-        </div>
-        <div className="bg-secondary-light-bg p-4 border rounded-lg">
-          <IoFastFoodOutline className="text-2xl" />
-          Rice
-        </div>
-        <div className="bg-secondary-light-bg p-4 border rounded-lg">
-          <IoFastFoodOutline className="text-2xl" />
-          Dessert
-        </div>
+      <div className="block md:flex md:justify-between md:items-center">
+        <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
+          Choose Category
+        </h1>
+        <InputSearch />
+      </div>
+      <div className="grid md:grid-cols-7 grid-cols-3 gap-4 justify-between auto-cols-max mt-8">
+        {categories.map((category) => (
+          <CategoryCard
+            key={category.id}
+            category={category}
+            active={active}
+            setActive={setActive}
+          ></CategoryCard>
+        ))}
+      </div>
+      <div className="mt-8 flex justify-between items-center mb-5">
+        <h1 className="text-black font-semibold text-xl md:text-2xl">
+          Coffee Menu
+        </h1>
+        <p className="text-sm font-semibold text-coffee-900">
+          11 Coffee Result
+        </p>
+      </div>
+      <div className="grid grid-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <Card />
+        <Card />
+        <Card />
       </div>
     </main>
   );
