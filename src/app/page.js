@@ -19,37 +19,39 @@ export default function Home() {
   const [active, setActive] = useState("");
 
   return (
-    <main className="bg-primary-light-bg min-h-screen px-4">
+    <div className="flex flex-row">
       <Sidebar />
-      <div className="block md:flex md:justify-between md:items-center">
-        <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
-          Choose Category
-        </h1>
-        <InputSearch />
-      </div>
-      <div className="grid md:grid-cols-7 grid-cols-3 gap-4 justify-between auto-cols-max mt-8">
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.id}
-            category={category}
-            active={active}
-            setActive={setActive}
-          ></CategoryCard>
-        ))}
-      </div>
-      <div className="mt-8 flex justify-between items-center mb-5">
-        <h1 className="text-black font-semibold text-xl md:text-2xl">
-          Coffee Menu
-        </h1>
-        <p className="text-sm font-semibold text-coffee-900">
-          11 Coffee Result
-        </p>
-      </div>
-      <div className="grid grid-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    </main>
+      <main className="bg-primary-light-bg w-[90%] min-h-screen px-4 py-6 lg:py-12">
+        <div className="block md:flex md:justify-between md:items-center">
+          <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
+            Choose Category
+          </h1>
+          <InputSearch />
+        </div>
+        <div className="grid md:grid-cols-7 grid-cols-3 gap-4 justify-between auto-cols-max mt-8">
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              category={category}
+              active={active}
+              setActive={setActive}
+            ></CategoryCard>
+          ))}
+        </div>
+        <div className="mt-8 flex justify-between items-center mb-5">
+          <h1 className="text-black font-semibold text-xl md:text-2xl">
+            Coffee Menu
+          </h1>
+          <p className="text-sm font-semibold text-coffee-900">
+            11 Coffee Result
+          </p>
+        </div>
+        <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          <Card productId={1} />
+          <Card productId={2} />
+          <Card productId={3} />
+        </div>
+      </main>
+    </div>
   );
 }
