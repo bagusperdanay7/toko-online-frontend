@@ -17,7 +17,7 @@ export default function Card({ productId }) {
             width={125}
             height={125}
             alt="Picture of Caramel Frapuccino"
-            className="rounded-xl w-full h-full md:h-[200px] max-h-72 object-cover"
+            className="rounded-xl w-full h-full sm:h-48 md:h-[200px] max-h-72 object-cover"
           />
           <div className="w-full">
             <h2 className="card-title text-black mb-2">Chocolate Frapuccino</h2>
