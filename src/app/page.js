@@ -4,6 +4,10 @@ import InputSearch from "./components/inputSearch";
 import CategoryCard from "./components/categoryCard";
 import Card from "./components/card";
 import { useState } from "react";
+import Image from "next/image";
+import avatar from "./coffee1.jpg";
+import { LuShoppingCart } from "react-icons/lu";
+import Cart from "./components/cart";
 
 export default function Home() {
   const categories = [
@@ -17,11 +21,38 @@ export default function Home() {
   ];
 
   const [active, setActive] = useState("");
+  const [cartShow, setCartShow] = useState(false);
+
+  function handleCartShow() {
+    setCartShow(!cartShow);
+  }
 
   return (
     <div className="flex flex-row">
       <Sidebar />
+      <Cart isShow={cartShow}>
+        <button onClick={handleCartShow}>Close</button>
+      </Cart>
       <main className="bg-primary-light-bg w-[90%] min-h-screen px-4 py-6 lg:py-12">
+        <header className="flex justify-between">
+          <div className="flex flex-row items-center space-x-2 mb-7">
+            <Image
+              src={avatar}
+              alt="Profile Avatar"
+              className="rounded-full w-8 h-8"
+            />
+            <p className="text-black font-medium text-sm">Bagus Perdana</p>
+          </div>
+
+          <div>
+            <button
+              onClick={handleCartShow}
+              className="p-2 bg-transparent border-0 rounded-full hover:bg-neutral-100 active:scale-95 transition-all"
+            >
+              <LuShoppingCart className="text-2xl text-neutral-500" />
+            </button>
+          </div>
+        </header>
         <div className="block md:flex md:justify-between md:items-center">
           <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
             Choose Category

@@ -5,3 +5,7 @@
 /* .btn {
   @apply bg-coffee-800 py-4 px-7 rounded-xl hover:bg-coffee-800;
 } */
+
+html {
+  @apply bg-primary-light-bg !important;
+}
