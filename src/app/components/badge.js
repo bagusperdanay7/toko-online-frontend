@@ -1,7 +1,17 @@
-export default function Badge() {
+function Badge({ text }) {
   return (
-    <span class="inline-flex items-center font-medium rounded-md bg-coffee-100 px-2 py-1 text-xs text-coffee-800">
-      Badge
+    <span className="inline-flex items-center font-semibold rounded-md bg-coffee-100 px-2 py-1 text-xs text-coffee-800">
+      {text}
     </span>
   );
 }
+
+function IconBadge({ text, icon }) {
+  return (
+    <span className="inline-flex items-center font-semibold rounded-md bg-coffee-100 px-2 py-1 text-xs text-coffee-800">
+      {text} {icon}
+    </span>
+  );
+}
+
+export { Badge, IconBadge };

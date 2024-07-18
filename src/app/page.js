@@ -3,7 +3,7 @@ import Sidebar from "./components/sidebar";
 import InputSearch from "./components/inputSearch";
 import CategoryCard from "./components/categoryCard";
 import Card from "./components/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import avatar from "./coffee1.jpg";
 import { LuShoppingCart } from "react-icons/lu";
@@ -11,6 +11,9 @@ import Cart from "./components/cart";
 import { IoCloseOutline } from "react-icons/io5";
 
 export default function Home() {
+  // useEffect(() => {
+  // }, [])
+
   const categories = [
     { id: 1, name: "All" },
     { id: 2, name: "Coffee" },
