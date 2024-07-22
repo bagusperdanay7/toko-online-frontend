@@ -9,10 +9,14 @@ import avatar from "./coffee1.jpg";
 import { LuShoppingCart } from "react-icons/lu";
 import Cart from "./components/cart";
 import { IoCloseOutline } from "react-icons/io5";
+import axios from "axios";
 
 export default function Home() {
-  // useEffect(() => {
-  // }, [])
+  const getAllProducts = async () => {
+    const products = await axios.get(`${process.env.apiBaseUrl}/product`);
+
+    return products.data;
+  };
 
   const categories = [
     { id: 1, name: "All" },
@@ -26,6 +30,15 @@ export default function Home() {
 
   const [active, setActive] = useState("");
   const [cartShow, setCartShow] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getAllProducts()
+      .then((result) => {
+        setProducts(result.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   function handleCartShow() {
     setCartShow(!cartShow);
@@ -86,13 +99,22 @@ export default function Home() {
               Coffee Menu
             </h1>
             <p className="text-sm font-semibold text-coffee-900">
-              11 Coffee Result
+              {products.length < 2
+                ? products.length + " Result"
+                : products.length + " Results"}
             </p>
           </div>
           <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            <Card productId={1} />
-            <Card productId={2} />
-            <Card productId={3} />
+            {products.map((product) => (
+              <Card
+                key={product.id}
+                productId={product.id}
+                name={product.name}
+                price={product.price}
+                desc={product.description}
+                image={product.imageUrl}
+              />
+            ))}
           </div>
         </main>
       </div>

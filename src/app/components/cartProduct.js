@@ -12,6 +12,9 @@ function CartProduct({ nama, harga }) {
     setProductNumber(0);
   }
 
+  {
+    /* TODO: Pake useRef cartProduct */
+  }
   return (
     <div className="flex justify-between mb-8">
       <Image
@@ -22,9 +25,7 @@ function CartProduct({ nama, harga }) {
       <div className="w-full flex flex-row ml-2 gap-2 items-center">
         <div className="basis-2/3">
           <h2 className="font-semibold text-black text-base mb-1">{nama}</h2>
-          <h2 className="font-bold text-neutral-600 mb-2">
-            Rp. {productNumber * harga}
-          </h2>
+          <h2 className="font-bold text-neutral-600 mb-2">Rp. {harga}</h2>
           <button className="" onClick={() => alert("Notes diklik")}>
             <IconBadge text="Notes" icon={<LuPencil className="ml-1" />} />
           </button>

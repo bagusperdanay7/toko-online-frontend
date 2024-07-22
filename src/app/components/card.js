@@ -1,7 +1,7 @@
 import Image from "next/image";
 import profilePic from "../coffee.jpg";
 
-export default function Card({ productId }) {
+export default function Card({ productId, name, desc, price, image }) {
   const sizes = [
     { id: 1, size: "S" },
     { id: 2, size: "M" },
@@ -13,19 +13,17 @@ export default function Card({ productId }) {
       <div className="card-body p-5 lg:p-8">
         <div className="flex flex-col lg:flex-row justify-between gap-5 items-center ">
           <Image
-            src={profilePic}
+            src={image}
             width={125}
             height={125}
             alt="Picture of Caramel Frapuccino"
-            className="rounded-xl w-full h-full sm:h-48 md:h-[200px] max-h-72 object-cover"
+            className="rounded-xl w-full h-full sm:h-48 md:h-[200px] md:w-[200px] max-h-72 object-cover"
           />
           <div className="w-full">
-            <h2 className="card-title text-black mb-2">Chocolate Frapuccino</h2>
-            <p className="text-sm text-neutral-700 mb-2">
-              Sirup Karamel dengan Kopi yang dicampur dengan krim
-            </p>
+            <h2 className="card-title text-black mb-2 capitalize">{name}</h2>
+            <p className="text-sm text-neutral-700 mb-2">{desc}</p>
             <h3 className="text-black font-bold text-xl">
-              <span>Rp</span> 15000
+              <span>Rp</span> {price}
             </h3>
           </div>
         </div>
