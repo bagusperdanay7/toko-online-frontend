@@ -1,6 +1,6 @@
 import { CiSearch } from "react-icons/ci";
 
-export default function InputSearch() {
+function Search() {
   return (
     <label className="input input-bordered flex items-center gap-2 bg-secondary-light-bg md:w-3/5 lg:w-2/5 focus:outline-coffee-600">
       <input
@@ -12,3 +12,5 @@ export default function InputSearch() {
     </label>
   );
 }
+
+export { Search };
