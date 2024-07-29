@@ -13,7 +13,6 @@ import { Search } from "./components/input";
 export default function Home() {
   const getAllProducts = async () => {
     const products = await axios.get(`${process.env.apiURL}/product`);
-    const products = await axios.get(`${process.env.apiURL}/product`);
 
     return products.data;
   };
