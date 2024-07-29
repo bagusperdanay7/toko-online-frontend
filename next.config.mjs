@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    apiURL: "http://localhost:8000/api",
+  },
   images: {
     remotePatterns: [
       {
