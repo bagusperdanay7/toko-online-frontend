@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { IoCloseOutline } from "react-icons/io5";
 import Main from "./components/main";
@@ -11,6 +11,7 @@ import CategoryCard from "./components/categoryCard";
 import { Search } from "./components/input";
 import { Suspense } from "react";
 import Loading from "./loading";
+import SidebarMobile from "./components/sidebarMobile";
 
 export default function Home() {
   const getAllProducts = async () => {
@@ -31,24 +32,29 @@ export default function Home() {
     { id: 7, name: "Dessert" },
   ];
 
-  const exampleProducts = [
-    {
-      id: 1,
-      name: "Cappucino",
-      price: 15000,
-      description: "Terbuat dari Kopi pilihan",
-      imageUrl:
-        "https://images.unsplash.com/photo-1524060545405-b99eebf362ac?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
+  // const exampleProducts = [
+  //   {
+  //     id: 1,
+  //     name: "Cappucino",
+  //     price: 15000,
+  //     description: "Terbuat dari Kopi pilihan",
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1524060545405-b99eebf362ac?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //   },
+  // ];
 
   // TODO: Ubah state management menggunakana Zustand (https://docs.pmnd.rs/zustand/getting-started/introduction)
   const [active, setActive] = useState("");
   const [products, setProducts] = useState([]);
   const [cartShow, setCartShow] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleCartShow() {
     setCartShow(!cartShow);
+  }
+
+  function handleSidebarMobile() {
+    setIsOpen(!isOpen);
   }
 
   useEffect(() => {
@@ -58,8 +64,6 @@ export default function Home() {
       })
       .catch((error) => console.log(error));
   }, []);
-
-  function handleSidebarMobile() {}
 
   return (
     <div>
@@ -72,9 +76,13 @@ export default function Home() {
         </button>
       </Cart>
       <div className="flex flex-row">
-        <Sidebar className="bg-secondary-light-bg z-10 w-3/5 sm:w-2/12 md:w-[15%] lg:w-[10%] h-screen sm:h-auto fixed sm:relative flex justify-center py-3 md:py-8" />
+        <Sidebar className="bg-secondary-light-bg z-10 w-3/5 sm:w-2/12 md:w-[15%] lg:w-[10%] h-screen sm:h-auto fixed sm:relative hidden sm:flex justify-center py-3 md:py-8" />
+        <SidebarMobile isOpen={isOpen} />
         <Main>
-          <Header handleCart={handleCartShow} />
+          <Header
+            handleCart={handleCartShow}
+            handleSidebar={handleSidebarMobile}
+          />
           <div className="block md:flex md:justify-between md:items-center">
             <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
               Choose Category
@@ -101,9 +109,9 @@ export default function Home() {
                 : products.length + " Results"}
             </p>
           </div>
-          <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            {products.length >= 1 ? (
-              products.map((product) => (
+          {products.length >= 1 ? (
+            <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+              {products.map((product) => {
                 <Card
                   key={product.id}
                   id={product.id}
@@ -111,14 +119,14 @@ export default function Home() {
                   price={product.price}
                   desc={product.description}
                   image={product.imageUrl}
-                />
-              ))
-            ) : (
-              <div className="text-center font-medium text-black">
-                Tidak Ada Product!
-              </div>
-            )}
-          </div>
+                />;
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-1 gap-5 justify-center">
+              Tidak Ada Product
+            </div>
+          )}
         </Main>
       </div>
     </div>

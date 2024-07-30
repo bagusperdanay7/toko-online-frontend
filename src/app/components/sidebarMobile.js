@@ -9,9 +9,17 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { HiOutlineWallet } from "react-icons/hi2";
 import Menu from "./menu";
 
-export default function Sidebar({ className }) {
+export default function SidebarMobile({ isOpen }) {
   return (
-    <div className={className} id="sidebar">
+    <div
+      className={
+        isOpen
+          ? "hidden " +
+            "bg-secondary-light-bg z-10 w-3/5 sm:w-0 h-screen sm:h-0 fixed justify-center py-3"
+          : "hidden "
+      }
+      id="sidebarMobile"
+    >
       <aside className="h-screen fixed z-10">
         <div className="z-20 text-black text-center mb-8">Logo</div>
         <div className="h-full">
