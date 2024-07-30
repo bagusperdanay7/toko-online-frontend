@@ -12,7 +12,9 @@ import { Search } from "./components/input";
 
 export default function Home() {
   const getAllProducts = async () => {
-    const products = await axios.get(`${process.env.apiURL}/product`);
+    const products = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/product`
+    );
 
     return products.data;
   };
