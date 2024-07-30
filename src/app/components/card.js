@@ -17,7 +17,7 @@ export default function Card({ id, name, desc, price, image }) {
             width={125}
             height={125}
             alt="Picture of Caramel Frapuccino"
-            className="rounded-xl w-full h-full object-cover"
+            className="rounded-xl lg:max-h-56 bg-center w-full h-full object-cover"
           />
           <h2 className="card-title text-black mt-3 capitalize">{name}</h2>
           <p className="text-sm text-neutral-700 mb-1">{desc}</p>

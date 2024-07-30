@@ -9,6 +9,8 @@ import Card from "./components/card";
 import Cart from "./components/cart";
 import CategoryCard from "./components/categoryCard";
 import { Search } from "./components/input";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default function Home() {
   const getAllProducts = async () => {
@@ -42,7 +44,7 @@ export default function Home() {
 
   // TODO: Ubah state management menggunakana Zustand (https://docs.pmnd.rs/zustand/getting-started/introduction)
   const [active, setActive] = useState("");
-  const [products, setProducts] = useState(exampleProducts);
+  const [products, setProducts] = useState([]);
   const [cartShow, setCartShow] = useState(false);
 
   function handleCartShow() {
@@ -100,16 +102,22 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            {products.map((product) => (
-              <Card
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.price}
-                desc={product.description}
-                image={product.imageUrl}
-              />
-            ))}
+            {products.length >= 1 ? (
+              products.map((product) => (
+                <Card
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  price={product.price}
+                  desc={product.description}
+                  image={product.imageUrl}
+                />
+              ))
+            ) : (
+              <div className="text-center font-medium text-black">
+                Tidak Ada Product!
+              </div>
+            )}
           </div>
         </Main>
       </div>
