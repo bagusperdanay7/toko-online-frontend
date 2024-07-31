@@ -8,11 +8,11 @@ import { RxHamburgerMenu } from "react-icons/rx";
 export default function Header({ handleCart, handleSidebar }) {
   return (
     <header className="flex justify-between">
-      <button className="flex sm:hidden" onClick={handleSidebar}>
+      <button className="flex sm:hidden items-center" onClick={handleSidebar}>
         <RxHamburgerMenu className="text-2xl text-black" />
       </button>
 
-      <div className="hidden sm:flex flex-row items-center space-x-2 mb-7">
+      <div className="hidden sm:flex flex-row items-center space-x-2">
         <Image
           src={avatar}
           alt="Profile Avatar"

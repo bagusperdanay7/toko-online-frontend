@@ -18,7 +18,6 @@ export default function Home() {
     const products = await axios.get(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/product`
     );
-
     return products.data;
   };
 
@@ -61,6 +60,7 @@ export default function Home() {
     getAllProducts()
       .then((result) => {
         setProducts(result.data);
+        console.log(result.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -109,24 +109,36 @@ export default function Home() {
                 : products.length + " Results"}
             </p>
           </div>
-          {products.length >= 1 ? (
+          <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            {products.map((product) => (
+              <Card
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                desc={product.description}
+                image={product.imageUrl}
+                price={product.price}
+              ></Card>
+            ))}
+          </div>
+          {/* {products.length < 1 ? (
+            <div className="grid grid-1 gap-5 items-center justify-center">
+              Gak ada
+            </div>
+          ) : (
             <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-              {products.map((product) => {
+              {products.map((product) => (
                 <Card
                   key={product.id}
                   id={product.id}
                   name={product.name}
-                  price={product.price}
                   desc={product.description}
                   image={product.imageUrl}
-                />;
-              })}
+                  price={product.price}
+                ></Card>
+              ))}
             </div>
-          ) : (
-            <div className="grid grid-1 gap-5 justify-center">
-              Tidak Ada Product
-            </div>
-          )}
+          )} */}
         </Main>
       </div>
     </div>
