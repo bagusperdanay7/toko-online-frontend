@@ -33,7 +33,7 @@ export default function Home() {
     { id: 7, name: "Dessert" },
   ];
 
-  const router = useRouter();
+  // const router = useRouter();
 
   // TODO: Ubah state management menggunakana Zustand (https://docs.pmnd.rs/zustand/getting-started/introduction)
   const [active, setActive] = useState("");
@@ -108,14 +108,17 @@ export default function Home() {
               </p>
             </div>
             {products.length < 1 ? (
-              <div className="grid grid-1 gap-5 items-center justify-center">
+              <div className="grid grid-1 place-items-center gap-y-3">
                 <Image
                   src={noData}
                   alt="No Data Image"
-                  className="w-28 md:w-48"
+                  className="w-28 md:w-48 align-middle"
                 />
-                <p className="font-bold text-black text-center">
+                <h3 className="font-extrabold text-black text-center text-lg md:text-xl">
                   Product Tidak Ada!
+                </h3>
+                <p className="font-medium text-neutral-500 text-center text-sm">
+                  Tidak dapat menemukan product
                 </p>
               </div>
             ) : (

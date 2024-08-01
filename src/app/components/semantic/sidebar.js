@@ -1,5 +1,5 @@
-import { GoHome } from "react-icons/go";
-import { BiSolidFoodMenu } from "react-icons/bi";
+import { GoHome, GoHomeFill } from "react-icons/go";
+import { BiFoodMenu, BiSolidFoodMenu } from "react-icons/bi";
 import {
   RiDiscountPercentLine,
   RiSettings3Line,
@@ -8,19 +8,34 @@ import {
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiOutlineWallet } from "react-icons/hi2";
 import Menu from "./menu";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar({ className }) {
+  const pathname = usePathname();
+
   return (
     <div className={className} id="sidebar">
       <aside className="h-screen fixed z-10">
         <div className="z-20 text-black text-center mb-8">Logo</div>
         <div className="h-full">
           <ul className="font-regular text-sm space-y-2">
-            <Menu href="/" name="Home" active={false}>
-              <GoHome className="text-2xl" />
+            <Menu href="/" name="Home" active={pathname === "/" ? true : false}>
+              {pathname === "/" ? (
+                <GoHomeFill className="text-2xl" />
+              ) : (
+                <GoHome className="text-2xl" />
+              )}
             </Menu>
-            <Menu href="/products" name="Product" active={true}>
-              <BiSolidFoodMenu className="text-2xl" />
+            <Menu
+              href="/products"
+              name="Product"
+              active={pathname === "/products" ? true : false}
+            >
+              {pathname === "/products" ? (
+                <BiSolidFoodMenu className="text-2xl" />
+              ) : (
+                <BiFoodMenu className="text-2xl" />
+              )}
             </Menu>
             <Menu href="/history" name="History" active={false}>
               <RiHistoryFill className="text-2xl" />
