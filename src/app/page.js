@@ -33,16 +33,7 @@ export default function Home() {
     { id: 7, name: "Dessert" },
   ];
 
-  // const exampleProducts = [
-  //   {
-  //     id: 1,
-  //     name: "Cappucino",
-  //     price: 15000,
-  //     description: "Terbuat dari Kopi pilihan",
-  //     imageUrl:
-  //       "https://images.unsplash.com/photo-1524060545405-b99eebf362ac?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   },
-  // ];
+  const router = useRouter();
 
   // TODO: Ubah state management menggunakana Zustand (https://docs.pmnd.rs/zustand/getting-started/introduction)
   const [active, setActive] = useState("");
