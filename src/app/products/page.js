@@ -1,14 +1,17 @@
 "use client";
 import { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
-import Main from "../components/main";
-import Header from "../components/header";
-import Sidebar from "../components/sidebar";
-import Cart from "../components/cart";
+import Main from "../components/semantic/main";
+import Header from "../components/semantic/header";
+import Sidebar from "../components/semantic/sidebar";
+import Cart from "../components/feature/cart";
 import Image from "next/image";
-import example from "../coffee1.jpg";
-import { CartButton } from "../components/button";
-import Toast from "../components/toast";
+import example from ".././/assets/coffee1.jpg";
+import { CartButton } from "../components/ui/button";
+import Toast from "../components/ui/toast";
+import { TbShoppingCartCheck } from "react-icons/tb";
+import { Badge } from "../components/ui/badge";
+import { useRouter } from "next/router";
 
 export default function Products() {
   const [cartShow, setCartShow] = useState(false);
@@ -59,11 +62,7 @@ export default function Products() {
                 <p className="text-neutral-700 text-sm font-medium mb-3">
                   Stock: 100
                 </p>
-                <div className="block">
-                  <span className="p-2 bg-coffee-100 rounded-xl text-xs md:text-sm text-coffee-800 font-semibold">
-                    Minuman
-                  </span>
-                </div>
+                <Badge text="Minuman" />
                 <p className="text-black font-semibold text-base mt-3">
                   Deskripsi:
                 </p>
@@ -79,7 +78,11 @@ export default function Products() {
               </div>
             </div>
           </section>
-          {toastShow ? <Toast text="Product ditambahkan ke cart" /> : null}
+          {toastShow ? (
+            <Toast text="Product ditambahkan ke cart">
+              <TbShoppingCartCheck className="text-black text-xl" />
+            </Toast>
+          ) : null}
         </Main>
       </div>
     </>

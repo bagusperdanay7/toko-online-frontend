@@ -18,4 +18,12 @@ function CartButton({ size, text, onClick }) {
   );
 }
 
+function ButtonBlock({ text }) {
+  return (
+    <button className="btn bg-coffee-700 hover:bg-coffee-800 btn-block font-semibold text-white rounded-xl">
+      {text}
+    </button>
+  );
+}
+
 export { CartButton };

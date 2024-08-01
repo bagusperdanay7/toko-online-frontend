@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { IconBadge } from "./badge";
+import { IconBadge } from "../ui/badge";
 import { LuPencil } from "react-icons/lu";
-import contohProduct from "./../coffee1.jpg";
+import contohProduct from "./../../assets/coffee1.jpg";
 
 function CartProduct({ nama, harga }) {
   const [productNumber, setProductNumber] = useState(1);

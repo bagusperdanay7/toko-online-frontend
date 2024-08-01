@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import avatar from "../avatar.jpg";
+import avatar from "./../../assets/avatar.jpg";
 import { LuShoppingCart } from "react-icons/lu";
 import { RxHamburgerMenu } from "react-icons/rx";
 

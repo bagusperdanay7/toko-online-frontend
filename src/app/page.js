@@ -1,17 +1,19 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import axios from "axios";
 import { IoCloseOutline } from "react-icons/io5";
-import Main from "./components/main";
-import Header from "./components/header";
-import Sidebar from "./components/sidebar";
-import Card from "./components/card";
-import Cart from "./components/cart";
-import CategoryCard from "./components/categoryCard";
-import { Search } from "./components/input";
-import { Suspense } from "react";
+import Main from "./components/semantic/main";
+import Header from "./components/semantic/header";
+import Sidebar from "./components/semantic/sidebar";
+import SidebarMobile from "./components/semantic/sidebarMobile";
+import Card from "./components/ui/card";
+import { Search } from "./components/ui/input";
+import Cart from "./components/feature/cart";
+import CategoryCard from "./components/feature/categoryCard";
+import noData from "./assets/no_data.svg";
 import Loading from "./loading";
-import SidebarMobile from "./components/sidebarMobile";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const getAllProducts = async () => {
@@ -83,62 +85,63 @@ export default function Home() {
             handleCart={handleCartShow}
             handleSidebar={handleSidebarMobile}
           />
-          <div className="block md:flex md:justify-between md:items-center">
-            <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
-              Choose Category
-            </h1>
-            <Search />
-          </div>
-          <div className="grid md:grid-cols-7 grid-cols-3 gap-4 justify-between auto-cols-max mt-8">
-            {categories.map((category) => (
-              <CategoryCard
-                key={category.id}
-                category={category}
-                active={active}
-                setActive={setActive}
-              ></CategoryCard>
-            ))}
-          </div>
-          <div className="mt-8 flex justify-between items-center mb-5">
-            <h1 className="text-black font-semibold text-xl md:text-2xl">
-              Menu
-            </h1>
-            <p className="text-sm font-semibold text-coffee-900">
-              {products.length < 2
-                ? products.length + " Result"
-                : products.length + " Results"}
-            </p>
-          </div>
-          <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            {products.map((product) => (
-              <Card
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                desc={product.description}
-                image={product.imageUrl}
-                price={product.price}
-              ></Card>
-            ))}
-          </div>
-          {/* {products.length < 1 ? (
-            <div className="grid grid-1 gap-5 items-center justify-center">
-              Gak ada
+          <section className="mt-6" id="titleAndSearch">
+            <div className="block md:flex md:justify-between md:items-center">
+              <h1 className="font-bold text-xl md:text-2xl text-black mb-3 md:mb-0">
+                Choose Category
+              </h1>
+              <Search />
             </div>
-          ) : (
-            <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-              {products.map((product) => (
-                <Card
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  desc={product.description}
-                  image={product.imageUrl}
-                  price={product.price}
-                ></Card>
+          </section>
+          <section className="mt-8" id="categories">
+            <div className="grid md:grid-cols-7 grid-cols-3 gap-4 justify-between auto-cols-max">
+              {categories.map((category) => (
+                <CategoryCard
+                  key={category.id}
+                  category={category}
+                  active={active}
+                  setActive={setActive}
+                ></CategoryCard>
               ))}
             </div>
-          )} */}
+          </section>
+          <section id="menus">
+            <div className="mt-8 flex justify-between items-center mb-5">
+              <h1 className="text-black font-semibold text-xl md:text-2xl">
+                Menu
+              </h1>
+              <p className="text-sm font-semibold text-coffee-900">
+                {products.length < 2
+                  ? products.length + " Result"
+                  : products.length + " Results"}
+              </p>
+            </div>
+            {products.length < 1 ? (
+              <div className="grid grid-1 gap-5 items-center justify-center">
+                <Image
+                  src={noData}
+                  alt="No Data Image"
+                  className="w-28 md:w-48"
+                />
+                <p className="font-bold text-black text-center">
+                  Product Tidak Ada!
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                {products.map((product) => (
+                  <Card
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    desc={product.description}
+                    image={product.imageUrl}
+                    price={product.price}
+                  ></Card>
+                ))}
+              </div>
+            )}
+          </section>
         </Main>
       </div>
     </div>

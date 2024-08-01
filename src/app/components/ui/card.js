@@ -1,5 +1,4 @@
 import Image from "next/image";
-import profilePic from "../coffee.jpg";
 
 export default function Card({ id, name, desc, price, image }) {
   const sizes = [
@@ -53,11 +52,6 @@ export default function Card({ id, name, desc, price, image }) {
               ))}
             </ul>
           </div>
-        </div>
-        <div className="card-actions mt-4 justify-end">
-          <button className="btn bg-coffee-700 hover:bg-coffee-800 btn-block font-semibold text-white rounded-xl">
-            Add To Cart
-          </button>
         </div>
       </div>
     </div>
